@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PrestamoRepository extends CrudRepository<PrestamoModel, Long>{
 
-    PrestamoModel findById(Long id);
+    //PrestamoModel findById(Long id);
 } 
