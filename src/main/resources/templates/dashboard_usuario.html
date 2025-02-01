@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { 
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+        }
+
+        /* sidebar */
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            background-color: #343a40;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar h5 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #495057;
+        }
+
+        .sidebar a {
+            color: white;
+            padding: 12px 15px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+            border-left: 4px solid #007bff;
+            padding-left: 14px;
+        }
+
+        /* navbar*/
+        .navbar-custom {
+            background-color: #007bff;
+            padding: 12px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .navbar-text {
+            font-size: 1rem;
+        }
+
+        /* Contenido*/
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            transition: margin-left 0.3s;
+        }
+
+        /* Tabla*/
+        .table {
+            background: white;
+        }
+
+        .table thead {
+            background: #007bff;
+            color: white;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 0;
+                overflow: hidden;
+            }
+            .content {
+                margin-left: 0;
+            }
+            #sidebarToggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <button class="btn btn-light me-3 d-lg-none" id="sidebarToggle">☰</button>
+            <img src="/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+            <span class="navbar-brand ms-2">Biblioteca</span>
+            <div class="ms-auto">
+                <span class="navbar-text text-white">Bienvenido, <span th:text="${nombreUsuario}">Usuario</span></span>
+                <a class="btn btn-light ms-3" href="/logout">Cerrar sesión</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menú lateral -->
+    <div class="sidebar" id="sidebar">
+        <h5 class="text-white text-center">Menú</h5>
+
+        
+        <div class="user-info text-white my-4">
+            <i class="fas fa-user-circle fa-3x"></i> 
+            <p class="mt-2"><strong th:text="${usuario.role}">ADMIN</strong></p>
+            <p th:text="${usuario.username}">Nombre Usuario</p>
+            <p class="text-muted" th:text="${usuario.email}">email@ejemplo.com</p>
+        </div> 
+
+        <a href="/usuario/dashboard">📚 Mis Préstamos</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <h2 class="mb-4">Mis Préstamos</h2>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título del Libro</th>
+                        <th>Fecha de Préstamo</th>
+                        <th>Fecha de Devolución</th>
+                        <th>Estado</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Las filas se llenarán dinámicamente desde el backend -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("sidebarToggle").addEventListener("click", function() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
+        });
+    </script>
+    <!-- Asegúrate de incluir FontAwesome para los íconos -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

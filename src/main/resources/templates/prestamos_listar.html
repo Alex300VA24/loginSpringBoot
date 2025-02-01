@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Todos Los Prestamos</title>
+</head>
+
+<body>
+
+    <h1>Todos Los Prestamos</h1>
+
+    <li th:each="prestamo : ${lista}">
+        ID: <span th:text="${prestamo.id}"></span> -
+        ID Usuario: <span th:text="${prestamo.idUsuario}"></span> -
+        ID Libro: <span th:text="${prestamo.idLibro}"></span> -
+        Fecha de Prestamo: <span th:text="${prestamo.fechaPrestamo}"></span> -
+        Fecha de Devolucion: <span th:text="${prestamo.fechaDevolucion}"></span> -
+        Estado: <span th:text="${prestamo.estado}"></span>
+    </li>
+
+</body>
+
+</html>

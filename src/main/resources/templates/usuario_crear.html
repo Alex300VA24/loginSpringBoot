@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nuevo Usuario</title>
+</head>
+
+<body>
+
+    <h1>Crear Nuevo Usuario</h1>
+    <!-- El formulario envía los datos a la ruta "/crearUsuario" usando POST -->
+    <form th:action="@{/usuarios/crear}" method="post" th:object="${usuarioDTO}">
+
+        <!-- Campo de Nombre -->
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" th:field="*{nombre}" required /><br><br>
+
+        <!-- Campo de Email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" required /><br><br>
+
+        <!-- Campo de Contraseña -->
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required /><br><br>
+
+        <!-- Botón para enviar el formulario -->
+        <button type="submit">Crear Usuario</button>
+    </form>
+
+</body>
+
+</html>

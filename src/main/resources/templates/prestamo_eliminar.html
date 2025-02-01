@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Prestamo</title>
+</head>
+
+<body>
+
+    <h1>Eliminar Prestamo</h1>
+
+    <h2>Seleccione el ID del prestamo a eliminar</h2>
+
+    <!-- Lista de usuarios con formularios para eliminar cada uno -->
+    <div>
+        <h3>Lista de Prestamos</h3>
+        <ul>
+            <li th:each="prestamo : ${lista}">
+                <p>ID Usuario: </p>
+                <p th:text="${prestamo.idUsuario}"></p>
+                <p>ID Libro: </p>
+                <p th:text="${prestamo.idLibro}"></p>
+                <p>Fecha de Prestamo: </p>
+                <p th:text="${prestamo.fechaPrestamo}"></p>
+                <p>Fecha de Devolucion: </p>
+                <p th:text="${prestamo.fechaDevolucion}"></p>
+                <!-- Formulario para eliminar el usuario -->
+                <form th:action="@{/prestamos/eliminar/{id}(id=${prestamo.id})}" method="post">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

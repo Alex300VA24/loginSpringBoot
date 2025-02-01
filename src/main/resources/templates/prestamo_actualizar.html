@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Prestamo</title>
+</head>
+
+<body>
+
+    <h1>Actulizar Prestamo </h1>
+
+    <!-- El formulario envía los datos a la ruta "/actualizarUsuario/{id}" usando POST -->
+    <form th:action="@{/prestamos/actualizar/{id}(id=${prestamo.id})}" method="post" th:object="${prestamo}">
+
+        <!-- Campo de Nombre (editable) -->
+        <label for="nombre">ID Usuario:</label>
+        <input type="text" id="idUsuario" th:field="*{idUsuario}" required /><br><br>
+
+        <!-- Campo de Email -->
+        <label for="autor">ID Libro:</label>
+        <input type="text" id="idLibro" th:field="*{idLibro}" required /><br><br>
+
+        <!-- Campo de Email -->
+        <label for="autor">Fecha de Prestamo:</label>
+        <input type="text" id="fechaPrestamo" th:field="*{fechaPrestamo}" required /><br><br>
+
+        <label for="autor">Fecha de Devolución:</label>
+        <input type="text" id="fechaDevolucion" th:field="*{fechaDevolucion}" required /><br><br>
+
+        <label for="autor">Estado:</label>
+        <input type="text" id="estado" th:field="*{estado}" required /><br><br>
+
+        <!-- Campo oculto para enviar el ID -->
+        <input type="hidden" th:field="*{id}" />
+
+        <!-- Botón para enviar el formulario -->
+        <button type="submit">Actualizar Prestamo</button>
+    </form>
+
+</body>
+
+</html>

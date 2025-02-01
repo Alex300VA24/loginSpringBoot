@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nuevo Prestamo</title>
+</head>
+
+<body>
+
+    <h1>Crear Nuevo Prestamo</h1>
+    <!-- El formulario envía los datos a la ruta "/crearUsuario" usando POST -->
+    <form th:action="@{/prestamos/crear}" method="post" th:object="${prestamoDTO}">
+
+        <!-- Campo de Nombre -->
+        <label for="nombre">ID Usuario:</label>
+        <input type="text" id="idUsuario" th:field="*{idUsuario}" required /><br><br>
+
+        <!-- Campo de Nombre -->
+        <label for="nombre">ID Libro:</label>
+        <input type="text" id="idLibro" th:field="*{idLibro}" required /><br><br>
+
+        <!-- Botón para enviar el formulario -->
+        <button type="submit">Crear Prestamo</button>
+    </form>
+
+</body>
+
+</html>

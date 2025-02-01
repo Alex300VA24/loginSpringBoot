@@ -1,0 +1,58 @@
+Pregunta 3: Arquitectura y Lógica (MVC, DAO y DTO) (5 puntos)
+-	Estructura MVC
+    Modelo: está todo en la carpeta model. Esta carpeta contiene otras 3 carpetas: DAO, DTO y models
+        DAO o Data Access Object: es la forma en que nuestro programa se comunica con la base de datos.
+        DTO o Data Transfer Object: es una "copia" del modelo original, la cual será la que todos los usuarios verán.
+            En el caso de que el modelo original contenga una contraseña, esta no se debe mostrar por todas partes, por eso se usa DTO.
+        models: son los tres modelos: usuarios, libros, prestamos.
+    
+    Vista: Spring Boot trabaja con archivos HTML, esas son nuestras vistas.
+        Aunque existe una carpeta llamada view, es inútil. Todas las vistas se encuentran en resources/templates.
+        Un HTML para cada operación que se hace para cada modelo.
+
+    Controlador: Spring Boot trabaja con la URL, por lo que el resumen de las URLs son:
+        http://localhost:8080 -> es el general para todos
+
+        GET: el controlador muestra información
+        POST: el controlador manda información
+        
+        Para los usurios: http://localhost:8080/usuarios/...
+        Para los libros: http://localhost:8080/libros/...
+        Para los prestamos: http://localhost:8080/prestamos/...
+
+        listar: lista todos los registros de la base de datos - GET
+        listar/{id}: encuentra el registro en la base de datos que tenga la id que pongas - GET
+        crear_form: te muestra la vista para ingresar información para crear un nuevo registro - GET
+        crear: manda esa información de la vista y la procesa, luego te redirige a listar - POST
+        actualizar_form/{id}: te muestra la vista para ingresar información para actualizar un registro existente con el id que pongas - GET
+        actualizar/{id}: manda esa información de la vista y la procesa, luego te redirige a listar - POST
+        eliminar_form: te muestra la vista para ingresar un id para eliminar un registro existente con el id que enviaste - GET
+        eliminar/{id}: manda esa información de la vista y la procesa, luego te redirige a listar - POST
+
+-	Crear DTO para Usuario y Préstamo
+    En la carpeta DTO está el DTO para cada uno, incluyendo el de libros
+
+-	Implementar DAO para acceso a datos
+    En la carpeta DAO está el DAO para cada uno de los modelos
+
+-	Gestión de errores y buenas prácticas de programación
+    En los métodos que requieren una conexión a la base de datos se usaron bloques try - catch para gestionar los errores.
+
+    Se uso como buena práctica: 
+        La inyección de dependendias, en el proceso de crear interfaces y de crear su implementación tanto para DAO como DTO
+        La separación de responsabilidades, al crear un DAO, DTO y modelo para cada entidad requerida
+
+-	Validaciones
+o	Validar préstamos activos
+o	Validar disponibilidad de libros
+
+    En la clase PrestamosServicioImpl, en su método crearPrestamo se implementaron varías validaciones:
+        Verificar si el usuario existe
+        Verificar si el libro existe
+        Verificar si el libro está disponible (comprueba si el atributo disponible del libro es true) - Lo que cumple con "Validar disponibilidad de libros"
+        Verificar si el préstamo está activo (si ya se ha prestado el libro a otro usuario) - Lo que cumple con "Validar préstamos activos"     
+
+Cosas a tomar en cuenta:
+    - En el archivo application.properties está la conexión a la base de datos.
+        Su ubicación es resources/application.properties
+        En el archivo hay algunas aclaraciones para su funcionamiento correcto

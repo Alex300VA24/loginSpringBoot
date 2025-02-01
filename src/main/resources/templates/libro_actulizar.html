@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Libro</title>
+</head>
+
+<body>
+
+    <h1>Actulizar Libro </h1>
+
+    <!-- El formulario envía los datos a la ruta "/actualizarUsuario/{id}" usando POST -->
+    <form th:action="@{/libros/actualizar/{id}(id=${libro.id})}" method="post" th:object="${libro}">
+
+        <!-- Campo de Nombre (editable) -->
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" th:field="*{nombre}" required /><br><br>
+
+        <!-- Campo de Email -->
+        <label for="autor">Autor:</label>
+        <input type="text" id="autor" th:field="*{autor}" required /><br><br>
+
+        <!-- Campo de Email -->
+        <label for="autor">Disponible:</label>
+        <input type="text" id="disponible" th:field="*{disponible}" required /><br><br>
+
+        <!-- Campo oculto para enviar el ID -->
+        <input type="hidden" th:field="*{id}" />
+
+        <!-- Botón para enviar el formulario -->
+        <button type="submit">Actualizar Libro</button>
+    </form>
+
+</body>
+
+</html>

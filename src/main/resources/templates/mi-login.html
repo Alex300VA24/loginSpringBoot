@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página de Login</title>
+    <!-- Agregar el enlace a Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Estilos para la página de login */
+      body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+      }
+
+      .login-container {
+        max-width: 400px;
+        width: 100%;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+      }
+
+      h3 {
+        color: #007bff;
+        font-weight: bold;
+      }
+
+      .btn-primary {
+        background-color: #007bff;
+        border: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: #0056b3;
+      }
+
+      .error-message {
+        display: none;
+        color: #dc3545;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <!DOCTYPE html>
+  <html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Página de Login</title>
+      <!-- Agregar el enlace a Bootstrap 5 -->
+      <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+      />
+      <link href="css/style.css" rel="stylesheet" />
+      <!-- Enlace al archivo de estilos -->
+    </head>
+    <body class="bg-light">
+      <div
+        class="container d-flex justify-content-center align-items-center vh-100"
+      >
+        <div class="card shadow-sm p-4 rounded bg-white login-container">
+          <div class="card-body">
+            <h3 class="text-primary text-center mb-4">Iniciar sesión</h3>
+            
+            <!-- Formulario de login -->
+            <form action="#" th:action="@{/mi-login}" method="post">
+              <div class="mb-3">
+                <label for="username" class="form-label">Usuario</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  name="username"
+                  placeholder="Ingrese su usuario" required>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Ingrese su contraseña" required>
+              </div>
+              <div
+                class="text-danger text-center error-message"
+                id="error-message" th:if="${param.error}">
+                Credenciales inválidas. Intente de nuevo.
+              </div>
+              <button type="submit" class="btn btn-primary w-100 mt-3">
+                Iniciar sesión
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </body>
+  </html>
+</html>
