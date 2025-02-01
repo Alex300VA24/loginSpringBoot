@@ -1,246 +1,212 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - Biblioteca</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        background-color: #f0f8ff;
-        font-family: Arial, sans-serif;
-      }
 
-      .sidebar {
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 260px;
-        background-color: #343a40;
-        padding-top: 20px;
-        transition: width 0.3s;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Biblioteca</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f0f8ff;
+      font-family: Arial, sans-serif;
+    }
 
-      .sidebar:hover {
-        width: 280px;
-      }
+    .sidebar {
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 260px;
+      background-color: #343a40;
+      padding-top: 20px;
+      transition: width 0.3s;
+    }
 
-      .sidebar h5 {
-        font-size: 1.2rem;
-        font-weight: bold;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #495057;
-      }
+    .sidebar:hover {
+      width: 280px;
+    }
 
-      .sidebar a {
-        color: white;
-        padding: 12px 15px;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        font-size: 1rem;
-        transition: background 0.3s;
-      }
+    .sidebar h5 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #495057;
+    }
 
-      .sidebar a:hover {
-        background-color: #495057;
-        border-left: 4px solid #007bff;
-        padding-left: 14px;
-      }
+    .sidebar a {
+      color: white;
+      padding: 12px 15px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
 
-      .content {
-        margin-left: 270px;
-        padding: 20px;
-      }
+    .sidebar a:hover {
+      background-color: #495057;
+      border-left: 4px solid #007bff;
+      padding-left: 14px;
+    }
 
-      .navbar-custom {
-        background-color: #007bff;
-        padding: 12px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      }
+    .content {
+      margin-left: 270px;
+      padding: 20px;
+    }
 
-      .navbar-brand {
-        font-size: 1.3rem;
-        font-weight: bold;
-        color: white;
-      }
+    .navbar-custom {
+      background-color: #007bff;
+      padding: 12px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-      .navbar-text {
-        font-size: 1rem;
-      }
+    .navbar-brand {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: white;
+    }
 
-      #logout-button {
-        font-size: 0.9rem;
-      }
+    .navbar-text {
+      font-size: 1rem;
+    }
 
-      .table {
-        background: white;
-      }
+    #logout-button {
+      font-size: 0.9rem;
+    }
 
-      .table thead {
-        background: #007bff;
-        color: white;
-      }
+    .table {
+      background: white;
+    }
 
-      .table-hover tbody tr:hover {
-        background-color: #f1f1f1;
-      }
+    .table thead {
+      background: #007bff;
+      color: white;
+    }
 
-      .form-control {
-        border-radius: 5px;
-      }
+    .table-hover tbody tr:hover {
+      background-color: #f1f1f1;
+    }
 
-      .btn {
-        border-radius: 5px;
-        transition: all 0.3s ease;
-      }
+    .form-control {
+      border-radius: 5px;
+    }
 
-      .btn:hover {
-        transform: scale(1.05);
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Barra de Navegación Superior -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
-      <div class="container-fluid">
-        <img
-          src="logo_biblioteca.png"
-          alt="Logo"
-          width="30"
-          height="30"
-          class="d-inline-block align-text-top"
-        />
-        <span class="navbar-brand ms-2">Biblioteca</span>
-        <div class="d-flex justify-content-end">
-          <span class="navbar-text text-white">Bienvenido, <span th:text="${nombreAdmin}">Admin</span></span>
-          <a class="btn btn-light ms-3" href="/logout">Cerrar sesión</a>
-        </div>
+    .btn {
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Barra de Navegación Superior -->
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid">
+      <img src="logo_biblioteca.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top" />
+      <span class="navbar-brand ms-2">Biblioteca</span>
+      <div class="d-flex justify-content-end">
+        <span class="navbar-text text-white">Bienvenido, <span th:text="${usuario.username}">Admin</span></span>
+        <a class="btn btn-light ms-3" href="/logout">Cerrar sesión</a>
       </div>
-    </nav>
-
-    <!-- Menú Lateral -->
-    <div class="sidebar">
-      <h5 class="text-white text-center">Menú</h5>
-
-      
-      <div class="user-info text-white my-4">
-        <i class="fas fa-user-circle fa-3x"></i> 
-        <p class="mt-2"><strong th:text="${usuario.role}">ADMIN</strong></p>
-        <p th:text="${usuario.username}">Nombre Usuario</p>
-        <p class="text-muted" th:text="${usuario.email}">email@ejemplo.com</p>
-      </div> 
-
-      <a href="#" id="gestion-prestamos">Gestión de Préstamos</a>
-    </div> 
-
-    <!-- Contenido Principal -->
-    <div class="content">
-      <h2>Gestión de Préstamos</h2>
-
-      <!-- Tabla de préstamos activos -->
-      <table class="table table-bordered" id="prestamos-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Título del Libro</th>
-            <th>Fecha de Préstamo</th>
-            <th>Fecha de Devolución</th>
-            <th>Usuario</th>
-            <th>Estado</th>
-            <th>Opciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Filas de préstamos se llenarán aquí -->
-        </tbody>
-      </table>
-
-      <!-- Formulario para añadir préstamo -->
-      <h3>Añadir Préstamo</h3>
-      <form id="add-loan-form">
-        <div class="mb-3">
-          <label for="book-title" class="form-label">Título del Libro</label>
-          <input type="text" class="form-control" id="book-title" required />
-        </div>
-        <div class="mb-3">
-          <label for="loan-date" class="form-label">Fecha de Préstamo</label>
-          <input type="date" class="form-control" id="loan-date" required />
-        </div>
-        <div class="mb-3">
-          <label for="return-date" class="form-label"
-            >Fecha de Devolución</label
-          >
-          <input type="date" class="form-control" id="return-date" required />
-        </div>
-        <div class="mb-3">
-          <label for="loan-user" class="form-label">Usuario</label>
-          <input type="text" class="form-control" id="loan-user" required />
-        </div>
-        <button type="submit" class="btn btn-primary">Añadir Préstamo</button>
-      </form>
-
-      <!-- Formulario para editar préstamo -->
-      <h3>Editar Préstamo</h3>
-      <form id="edit-loan-form" style="display: none">
-        <input type="hidden" id="edit-loan-id" />
-        <div class="mb-3">
-          <label for="edit-book-title" class="form-label"
-            >Título del Libro</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="edit-book-title"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="edit-loan-date" class="form-label"
-            >Fecha de Préstamo</label
-          >
-          <input
-            type="date"
-            class="form-control"
-            id="edit-loan-date"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="edit-return-date" class="form-label"
-            >Fecha de Devolución</label
-          >
-          <input
-            type="date"
-            class="form-control"
-            id="edit-return-date"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="edit-loan-user" class="form-label">Usuario</label>
-          <input
-            type="text"
-            class="form-control"
-            id="edit-loan-user"
-            required
-          />
-        </div>
-        <button type="submit" class="btn btn-warning">Guardar Cambios</button>
-      </form>
-
-      <script>
-        document.getElementById("sidebarToggle").addEventListener("click", function() {
-            const sidebar = document.getElementById("sidebar");
-            sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
-        });
-      </script>
-      <!-- Asegúrate de incluir FontAwesome para los íconos -->
-      <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     </div>
-  </body>
+  </nav>
+
+  <!-- Menú Lateral -->
+  <div class="sidebar">
+    <h5 class="text-white text-center">Menú</h5>
+
+
+    <div class="user-info text-white my-4">
+      <i class="fas fa-user-circle fa-3x"></i>
+      <p class="mt-2"><strong th:text="${usuario.role}">ADMIN</strong></p>
+      <p th:text="${usuario.username}">Nombre Usuario</p>
+      <p class="text-muted" th:text="${usuario.email}">email@ejemplo.com</p>
+    </div>
+
+    <a href="#" id="gestion-prestamos">Gestión de Préstamos</a>
+  </div>
+
+  <!-- Contenido Principal -->
+  <div class="content">
+    <h2>Gestión de Préstamos</h2>
+
+    <!-- Tabla de préstamos activos -->
+    <table class="table table-bordered" id="prestamos-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título del Libro</th>
+          <th>Fecha de Préstamo</th>
+          <th>Fecha de Devolución</th>
+          <th>Usuario</th>
+          <th>Estado</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Filas de préstamos se llenarán aquí -->
+      </tbody>
+    </table>
+
+    <!-- Formulario para añadir préstamo -->
+    <h3>Añadir Préstamo</h3>
+    <form id="add-loan-form">
+      <div class="mb-3">
+        <label for="book-title" class="form-label">Título del Libro</label>
+        <input type="text" class="form-control" id="book-title" required />
+      </div>
+      <div class="mb-3">
+        <label for="loan-date" class="form-label">Fecha de Préstamo</label>
+        <input type="date" class="form-control" id="loan-date" required />
+      </div>
+      <div class="mb-3">
+        <label for="return-date" class="form-label">Fecha de Devolución</label>
+        <input type="date" class="form-control" id="return-date" required />
+      </div>
+      <div class="mb-3">
+        <label for="loan-user" class="form-label">Usuario</label>
+        <input type="text" class="form-control" id="loan-user" required />
+      </div>
+      <button type="submit" class="btn btn-primary">Añadir Préstamo</button>
+    </form>
+
+    <!-- Formulario para editar préstamo -->
+    <h3>Editar Préstamo</h3>
+    <form id="edit-loan-form" style="display: none">
+      <input type="hidden" id="edit-loan-id" />
+      <div class="mb-3">
+        <label for="edit-book-title" class="form-label">Título del Libro</label>
+        <input type="text" class="form-control" id="edit-book-title" required />
+      </div>
+      <div class="mb-3">
+        <label for="edit-loan-date" class="form-label">Fecha de Préstamo</label>
+        <input type="date" class="form-control" id="edit-loan-date" required />
+      </div>
+      <div class="mb-3">
+        <label for="edit-return-date" class="form-label">Fecha de Devolución</label>
+        <input type="date" class="form-control" id="edit-return-date" required />
+      </div>
+      <div class="mb-3">
+        <label for="edit-loan-user" class="form-label">Usuario</label>
+        <input type="text" class="form-control" id="edit-loan-user" required />
+      </div>
+      <button type="submit" class="btn btn-warning">Guardar Cambios</button>
+    </form>
+
+    <script>
+      document.getElementById("sidebarToggle").addEventListener("click", function () {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
+      });
+    </script>
+    <!-- Asegúrate de incluir FontAwesome para los íconos -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  </div>
+</body>
+
 </html>
