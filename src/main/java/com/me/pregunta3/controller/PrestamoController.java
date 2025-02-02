@@ -62,7 +62,7 @@ public class PrestamoController {
     public String actualizarPrestamo(@PathVariable Long id, @ModelAttribute PrestamoDTO prestamoDTO) {
         prestamoServicio.actualizarPrestamo(id, prestamoDTO);
 
-        return "redirect:/prestamos/listar";
+        return "redirect:/v1/admin";
     }
 
     @GetMapping("/eliminar_form")
@@ -76,7 +76,7 @@ public class PrestamoController {
     public String eliminarPrestamo(@PathVariable Long id) {
         prestamoServicio.eliminarPrestamo(id);
 
-        return "redirect:/prestamos/listar";
+        return "redirect:/v1/admin";
     }
 
 }

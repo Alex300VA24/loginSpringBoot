@@ -159,8 +159,11 @@
           <td th:text="${prestamo.estado ? 'Activo' : 'Inactivo'}"></td> <!-- Estado del préstamo -->
           <td>
             <!-- Opciones (por ejemplo, editar o eliminar) -->
-            <a href="#" class="btn btn-warning">Editar</a>
-            <a href="#" class="btn btn-danger">Eliminar</a>
+            <a th:href="@{/prestamos/actualizar_form/{id}(id=${prestamo.id})}" class="btn btn-warning">Editar</a>
+            <!-- Formulario para eliminar -->
+            <form th:action="@{/prestamos/eliminar/{id}(id=${prestamo.id})}" method="post" style="display: inline;">
+              <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
           </td>
         </tr>
       </tbody>
