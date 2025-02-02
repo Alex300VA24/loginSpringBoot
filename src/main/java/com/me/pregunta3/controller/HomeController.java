@@ -77,10 +77,4 @@ public class HomeController {
         return "dashboard_usuario"; // Nombre del archivo HTML
     }
 
-    @GetMapping("/prueba")
-    public String mostrarMensaje(Model model) {
-        model.addAttribute("mensaje", "¡Hola desde Thymeleaf!");
-        return "prueba"; // nombre del archivo HTML (sin extensión)
-    }
-
 }

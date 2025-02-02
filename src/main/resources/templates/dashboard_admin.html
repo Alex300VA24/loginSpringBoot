@@ -128,7 +128,7 @@
       <p class="text-muted" th:text="${usuario.email}">email@ejemplo.com</p>
     </div>
 
-    <a href="#" id="gestion-prestamos">Gestión de Préstamos</a>
+    <a href="/v1/admin" id="gestion-prestamos">Gestión de Préstamos</a>
   </div>
 
   <!-- Contenido Principal -->
@@ -201,29 +201,6 @@
         <input type="text" class="form-control" id="idUsuario" th:field="*{idUsuario}" required />
       </div>
       <button type="submit" class="btn btn-primary">Añadir Préstamo</button>
-    </form>
-
-    <!-- Formulario para editar préstamo -->
-    <h3>Editar Préstamo</h3>
-    <form id="edit-loan-form" style="display: none">
-      <input type="hidden" id="edit-loan-id" />
-      <div class="mb-3">
-        <label for="edit-book-title" class="form-label">Título del Libro</label>
-        <input type="text" class="form-control" id="edit-book-title" required />
-      </div>
-      <div class="mb-3">
-        <label for="edit-loan-date" class="form-label">Fecha de Préstamo</label>
-        <input type="date" class="form-control" id="edit-loan-date" required />
-      </div>
-      <div class="mb-3">
-        <label for="edit-return-date" class="form-label">Fecha de Devolución</label>
-        <input type="date" class="form-control" id="edit-return-date" required />
-      </div>
-      <div class="mb-3">
-        <label for="edit-loan-user" class="form-label">Usuario</label>
-        <input type="text" class="form-control" id="edit-loan-user" required />
-      </div>
-      <button type="submit" class="btn btn-warning">Guardar Cambios</button>
     </form>
 
     <script>
