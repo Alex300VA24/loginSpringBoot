@@ -16,4 +16,6 @@ public interface IUsuarioDAO {
     void actualizarUsuario(UsuarioModel usuarioModel);
 
     void eliminarUsuario(UsuarioModel usuarioModel);
+
+    Long encontrarNombreById(String nombre);
 }

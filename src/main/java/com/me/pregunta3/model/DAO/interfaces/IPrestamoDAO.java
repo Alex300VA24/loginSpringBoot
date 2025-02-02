@@ -19,4 +19,6 @@ public interface IPrestamoDAO {
 
     Optional<PrestamoModel> buscarPrestamoActivo(Long idLibro);
 
+    List<PrestamoModel> prestamosByID(Long id);
+
 }

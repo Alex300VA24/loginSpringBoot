@@ -10,8 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.me.pregunta3.model.DAO.interfaces.IPrestamoDAO;
+import com.me.pregunta3.model.DAO.interfaces.IUsuarioDAO;
 import com.me.pregunta3.model.DTO.PrestamoDTO;
 import com.me.pregunta3.model.DTO.services.interfaces.IPrestamoServicio;
+import com.me.pregunta3.model.models.PrestamoModel;
 import com.me.pregunta3.model.models.UsuarioModel;
 import com.me.pregunta3.repository.UsuarioRepository;
 
@@ -31,6 +34,12 @@ public class HomeController {
 
     @Autowired
     private IPrestamoServicio prestamoServicio;
+
+    @Autowired
+    private IUsuarioDAO usuarioDAO;
+
+    @Autowired
+    private IPrestamoDAO prestamoDAO;
 
     @GetMapping("/home")
     public String home() {
@@ -60,6 +69,11 @@ public class HomeController {
         String nombreUsuario = principal.getName(); // Obtener el nombre del usuario
         UsuarioModel usuario = usuarioRepository.findByUsername(nombreUsuario); // Buscar el usuario en la base de datos
         model.addAttribute("usuario", usuario); // Pasar el usuario al modelo
+
+        Long id = usuarioDAO.encontrarNombreById(nombreUsuario);
+        List<PrestamoModel> lista = prestamoDAO.prestamosByID(id);
+        model.addAttribute("lista", lista);
+
         return "dashboard_usuario"; // Nombre del archivo HTML
     }
 

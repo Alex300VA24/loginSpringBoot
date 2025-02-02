@@ -151,7 +151,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Las filas se llenarán dinámicamente desde el backend -->
+                    <!-- Recorrer la lista de préstamos -->
+                    <tr th:each="prestamo : ${lista}">
+                        <td th:text="${prestamo.id}"></td> <!-- ID del préstamo -->
+                        <td th:text="${prestamo.idLibro.nombre}"></td> <!-- Título del libro -->
+                        <td th:text="${prestamo.fechaPrestamo}"></td> <!-- Fecha de préstamo -->
+                        <td th:text="${prestamo.fechaDevolucion}"></td> <!-- Fecha de devolución -->
+                        <td th:text="${prestamo.estado ? 'Activo' : 'Inactivo'}"></td> <!-- Estado del préstamo -->
+                        <td>
+                            <!-- Opciones (por ejemplo, editar o eliminar) -->
+                            <a href="#" class="btn btn-warning">Editar</a>
+                            <a href="#" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

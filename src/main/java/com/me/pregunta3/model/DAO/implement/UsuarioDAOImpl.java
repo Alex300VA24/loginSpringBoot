@@ -10,6 +10,7 @@ import com.me.pregunta3.model.DAO.interfaces.IUsuarioDAO;
 import com.me.pregunta3.model.models.UsuarioModel;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 
 @Repository
@@ -48,6 +49,20 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
     @Transactional
     public void eliminarUsuario(UsuarioModel usuarioModel) {
         this.entityManager.remove(usuarioModel);
+    }
+
+    @Override
+    public Long encontrarNombreById(String nombre) {
+        try {
+            // Consultamos directamente la ID del usuario basado en su nombre
+            return (Long) this.entityManager
+                    .createQuery("SELECT u.id FROM UsuarioModel u WHERE u.username = :nombre")
+                    .setParameter("nombre", nombre)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            // Si no se encuentra ningún resultado, puedes manejarlo como prefieras
+            return null; // O lanzar una excepción personalizada si prefieres
+        }
     }
 
 }

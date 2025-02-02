@@ -73,4 +73,17 @@ public class PrestamoDAOImpl implements IPrestamoDAO {
         }
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<PrestamoModel> prestamosByID(Long usuarioId) {
+        // Realizamos la consulta JPQL para obtener todos los préstamos del usuario por
+        // su ID
+        String query = "SELECT p FROM PrestamoModel p WHERE p.idUsuario.id = :usuarioId";
+
+        // Ejecutamos la consulta con el parámetro
+        return entityManager.createQuery(query, PrestamoModel.class)
+                .setParameter("usuarioId", usuarioId)
+                .getResultList();
+    }
+
 }

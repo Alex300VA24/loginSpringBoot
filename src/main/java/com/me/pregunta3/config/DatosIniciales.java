@@ -21,7 +21,7 @@ public class DatosIniciales {
         query = "INSERT INTO libros (nombre, autor, disponible) VALUES ('Paco Yunque', 'Cesar Vallejo', true), ('Cien Años de Soledad', 'Gabriel García Marquez', true), ('El Mundo es Ancho y Ajeno', 'Ciro Alegria', true);";
         jdbcTemplate.update(query);
 
-        query = "INSERT INTO prestamos (id_usuario, id_libro, fecha_prestamo, estado) VALUES (2, 1, '2025-02-01', true), (2, 2, '2025-01-30', false);";
+        query = "INSERT INTO prestamos (id_usuario, id_libro, fecha_prestamo, fecha_devolucion, estado) VALUES (2, 1, '2025-02-01', '2025-02-15', true), (2, 2, '2025-01-30', '2025-02-15', false);";
         jdbcTemplate.update(query);
 
     }
