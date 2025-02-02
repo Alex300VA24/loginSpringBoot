@@ -1,43 +1,115 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Prestamo</title>
+    <title>Actualizar Préstamo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+
+        /* Ocultar ID Usuario y ID Libro */
+        #idUsuario, #idLibro {
+            display: none;
+        }
+
+        /* Navbar */
+        .navbar-custom {
+            background-color: #007bff;
+            padding: 12px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .navbar-text {
+            font-size: 1rem;
+            color: white;
+        }
+
+        .navbar-text i {
+            margin-right: 5px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Actulizar Prestamo </h1>
 
-    <!-- El formulario envía los datos a la ruta "/actualizarUsuario/{id}" usando POST -->
-    <form th:action="@{/prestamos/actualizar/{id}(id=${prestamo.id})}" method="post" th:object="${prestamo}">
+    <!-- Contenedor del formulario -->
+    <div class="container">
+        <h1>Actualizar Préstamo</h1>
 
-        <!-- Campo de Nombre (editable) -->
-        <label for="nombre">ID Usuario:</label>
-        <input type="text" id="idUsuario" th:field="*{idUsuario}" required /><br><br>
+        <form th:action="@{/prestamos/actualizar/{id}(id=${prestamo.id})}" method="post" th:object="${prestamo}">
 
-        <!-- Campo de Email -->
-        <label for="autor">ID Libro:</label>
-        <input type="text" id="idLibro" th:field="*{idLibro}" required /><br><br>
+            <!-- ID Usuario (Oculto) -->
+            <input type="hidden" id="idUsuario" th:field="*{idUsuario}" />
 
-        <!-- Campo de Email -->
-        <label for="autor">Fecha de Prestamo:</label>
-        <input type="text" id="fechaPrestamo" th:field="*{fechaPrestamo}" required /><br><br>
+            <!-- ID Libro (Oculto) -->
+            <input type="hidden" id="idLibro" th:field="*{idLibro}" />
 
-        <label for="autor">Fecha de Devolución:</label>
-        <input type="text" id="fechaDevolucion" th:field="*{fechaDevolucion}" required /><br><br>
+            <label for="fechaPrestamo">Fecha de Préstamo:</label>
+            <input type="text" id="fechaPrestamo" class="form-control" th:field="*{fechaPrestamo}" required />
 
-        <label for="autor">Estado:</label>
-        <input type="text" id="estado" th:field="*{estado}" required /><br><br>
+            <label for="fechaDevolucion">Fecha de Devolución:</label>
+            <input type="text" id="fechaDevolucion" class="form-control" th:field="*{fechaDevolucion}" required />
 
-        <!-- Campo oculto para enviar el ID -->
-        <input type="hidden" th:field="*{id}" />
+            <label for="estado">Estado:</label>
+            <input type="text" id="estado" class="form-control" th:field="*{estado}" required />
 
-        <!-- Botón para enviar el formulario -->
-        <button type="submit">Actualizar Prestamo</button>
-    </form>
+            <!-- Campo oculto para enviar el ID -->
+            <input type="hidden" th:field="*{id}" />
+
+            <button type="submit" class="btn btn-custom">Actualizar Préstamo</button>
+        </form>
+    </div>
 
 </body>
 
