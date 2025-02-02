@@ -47,7 +47,7 @@ public class PrestamoController {
     public String crearPrestamo(@ModelAttribute PrestamoDTO prestamoDTO) {
         prestamoServicio.crearPrestamo(prestamoDTO);
 
-        return "redirect:/prestamos/listar";
+        return "redirect:/v1/admin";
     }
 
     @GetMapping("/actualizar_form/{id}")

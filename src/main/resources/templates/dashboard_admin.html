@@ -149,28 +149,53 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Filas de préstamos se llenarán aquí -->
+        <!-- Recorrer la lista de préstamos -->
+        <tr th:each="prestamo : ${lista}">
+          <td th:text="${prestamo.id}"></td> <!-- ID del préstamo -->
+          <td th:text="${prestamo.idLibro}"></td> <!-- Título del libro -->
+          <td th:text="${prestamo.fechaPrestamo}"></td> <!-- Fecha de préstamo -->
+          <td th:text="${prestamo.fechaDevolucion}"></td> <!-- Fecha de devolución -->
+          <td th:text="${prestamo.idUsuario}"></td> <!-- Usuario -->
+          <td th:text="${prestamo.estado ? 'Activo' : 'Inactivo'}"></td> <!-- Estado del préstamo -->
+          <td>
+            <!-- Opciones (por ejemplo, editar o eliminar) -->
+            <a href="#" class="btn btn-warning">Editar</a>
+            <a href="#" class="btn btn-danger">Eliminar</a>
+          </td>
+        </tr>
       </tbody>
     </table>
 
     <!-- Formulario para añadir préstamo -->
     <h3>Añadir Préstamo</h3>
-    <form id="add-loan-form">
+    <form id="add-loan-form" th:action="@{/prestamos/crear}" method="post" th:object="${prestamoDTO}">
+      <!--
       <div class="mb-3">
         <label for="book-title" class="form-label">Título del Libro</label>
         <input type="text" class="form-control" id="book-title" required />
       </div>
+      -->
+      <div class="mb-3">
+        <label for="book-title" class="form-label">ID del Libro</label>
+        <input type="text" class="form-control" id="idLibro" th:field="*{idLibro}" required />
+      </div>
       <div class="mb-3">
         <label for="loan-date" class="form-label">Fecha de Préstamo</label>
-        <input type="date" class="form-control" id="loan-date" required />
+        <input type="date" class="form-control" id="fechaPrestamo" th:field="*{fechaPrestamo}" required />
       </div>
       <div class="mb-3">
         <label for="return-date" class="form-label">Fecha de Devolución</label>
-        <input type="date" class="form-control" id="return-date" required />
+        <input type="date" class="form-control" id="fechaDevolucion" th:field="*{fechaDevolucion}" required />
       </div>
+      <!--
       <div class="mb-3">
         <label for="loan-user" class="form-label">Usuario</label>
         <input type="text" class="form-control" id="loan-user" required />
+      </div>
+      -->
+      <div class="mb-3">
+        <label for="loan-user" class="form-label">ID del Usuario</label>
+        <input type="text" class="form-control" id="idUsuario" th:field="*{idUsuario}" required />
       </div>
       <button type="submit" class="btn btn-primary">Añadir Préstamo</button>
     </form>
